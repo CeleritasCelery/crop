@@ -1,8 +1,10 @@
 use core::ops::RangeBounds;
 
+use get_size::GetSize;
+
 use super::traits::{BalancedLeaf, Leaf, Metric, ReplaceableLeaf};
 
-#[derive(Clone, Default)]
+#[derive(Clone, Default, GetSize)]
 pub(super) struct Lnode<L: Leaf> {
     value: L,
     summary: L::Summary,

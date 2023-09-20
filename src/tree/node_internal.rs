@@ -1,10 +1,12 @@
 use core::ops::{Range, RangeBounds};
 
+use get_size::GetSize;
+
 use super::traits::*;
 use super::{Arc, ExactChain, Node};
 use crate::range_bounds_to_start_end;
 
-#[derive(Clone)]
+#[derive(Clone, GetSize)]
 pub(super) struct Inode<const N: usize, L: Leaf> {
     children: Vec<Arc<Node<N, L>>>,
     summary: L::Summary,

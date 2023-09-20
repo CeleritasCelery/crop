@@ -7,10 +7,20 @@
 use core::mem::MaybeUninit;
 use core::ptr::{addr_of_mut, NonNull};
 use core::sync::atomic;
+use get_size::GetSize;
 
 /// A tiny `Arc` without weak references.
 pub(super) struct Arc<T> {
     ptr: NonNull<ArcInner<T>>,
+}
+
+impl<T> GetSize for Arc<T>
+where
+    T: GetSize,
+{
+    fn get_heap_size(&self) -> usize {
+        (**self).get_size()
+    }
 }
 
 unsafe impl<T: Sync + Send> Send for Arc<T> {}

@@ -4,7 +4,7 @@ use super::gap_buffer::GapBuffer;
 use super::gap_slice::GapSlice;
 use crate::tree::{DoubleEndedUnitMetric, Metric, SlicingMetric, UnitMetric};
 
-#[derive(Copy, Clone, Default, Debug, PartialEq)]
+#[derive(Copy, Clone, Default, Debug, PartialEq, GetSize)]
 #[doc(hidden)]
 pub struct ChunkSummary {
     bytes: usize,
@@ -573,6 +573,7 @@ impl<const MAX_BYTES: usize> DoubleEndedUnitMetric<GapBuffer<MAX_BYTES>>
     }
 }
 
+use get_size::GetSize;
 #[cfg(feature = "utf16-metric")]
 pub use utf16_metric::Utf16Metric;
 

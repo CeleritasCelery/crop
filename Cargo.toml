@@ -32,6 +32,7 @@ dp = ["deep_trees"]
 [dependencies]
 str_indices = { version = "0.4.0", default-features = false }
 unicode-segmentation = { version = "1.10.0", optional = true }
+get-size = {git = "https://github.com/CeleritasCelery/get-size.git", branch = "boxed_slice_fix", features = ["derive"]}
 
 [dev-dependencies]
 criterion = "0.4"

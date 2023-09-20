@@ -1,10 +1,13 @@
 use core::fmt::Debug;
 use core::ops::{Add, AddAssign, RangeBounds, Sub, SubAssign};
 
+use get_size::GetSize;
+
 pub trait Summarize: Debug {
     type Summary: Debug
         + Default
         + Clone
+        + GetSize
         + for<'a> Add<&'a Self::Summary, Output = Self::Summary>
         + for<'a> Sub<&'a Self::Summary, Output = Self::Summary>
         + for<'a> AddAssign<&'a Self::Summary>

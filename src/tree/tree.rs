@@ -1,9 +1,11 @@
 use core::ops::Range;
 
+use get_size::GetSize;
+
 use super::*;
 
 /// A self-balancing tree with metadata stored in each node.
-#[derive(Default)]
+#[derive(Default, GetSize)]
 pub struct Tree<const ARITY: usize, L: Leaf> {
     pub(super) root: Arc<Node<ARITY, L>>,
 }
@@ -1550,7 +1552,7 @@ mod tests {
     use super::*;
     use crate::tree::Summarize;
 
-    #[derive(Copy, Clone, Default, Debug, Eq, PartialEq)]
+    #[derive(Copy, Clone, Default, Debug, Eq, PartialEq, GetSize)]
     pub struct Count {
         count: usize,
         leaves: usize,

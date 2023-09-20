@@ -7,6 +7,7 @@ use super::utils::{panic_messages as panic, *};
 use super::RopeSlice;
 use crate::range_bounds_to_start_end;
 use crate::tree::Tree;
+use get_size::GetSize;
 
 #[cfg(any(test, feature = "arity_4"))]
 const ARITY: usize = 4;
@@ -23,7 +24,7 @@ const CHUNK_MAX_BYTES: usize = 2048;
 pub(super) type RopeChunk = GapBuffer<CHUNK_MAX_BYTES>;
 
 /// A UTF-8 text rope.
-#[derive(Clone, Default)]
+#[derive(Clone, Default, GetSize)]
 pub struct Rope {
     pub(super) tree: Tree<{ Self::arity() }, RopeChunk>,
     pub(super) has_trailing_newline: bool,

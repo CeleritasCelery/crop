@@ -5,6 +5,8 @@
 
 use core::ops::{Range, RangeBounds};
 
+use get_size::GetSize;
+
 use super::gap_slice::GapSlice;
 use super::metrics::{ByteMetric, ChunkSummary};
 use super::utils::{panic_messages as panic, *};
@@ -33,7 +35,7 @@ use crate::tree::{
 /// `len_gap() = MAX_BYTES - len_left - len_right`.
 ///
 /// [gap buffer]: https://en.wikipedia.org/wiki/Gap_buffer
-#[derive(Clone)]
+#[derive(Clone, GetSize)]
 pub struct GapBuffer<const MAX_BYTES: usize> {
     pub(super) bytes: Box<[u8; MAX_BYTES]>,
     pub(super) left_summary: ChunkSummary,

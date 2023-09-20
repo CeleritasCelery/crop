@@ -1,7 +1,9 @@
+use get_size::GetSize;
+
 use super::traits::{BalancedLeaf, Leaf, Metric, SlicingMetric};
 use super::{Arc, Inode, Lnode};
 
-#[derive(Clone)]
+#[derive(Clone, GetSize)]
 pub(super) enum Node<const N: usize, L: Leaf> {
     Internal(Inode<N, L>),
     Leaf(Lnode<L>),
